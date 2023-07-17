@@ -73,8 +73,6 @@ export class BasicPageComponent implements OnInit{
 
 
 
-
-
   onSave(): void {
 
     if (this.myForm.invalid) {
