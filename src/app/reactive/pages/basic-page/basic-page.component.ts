@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { ValidatorsService } from 'src/app/shared/services/validator.service';
 
 const rtx5090 = {
   name:'rtx5090',
@@ -37,7 +38,7 @@ export class BasicPageComponent implements OnInit{
   })
   
   
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private validatorsSevice:ValidatorsService) { }
 
   ngOnInit(): void {
 /*     this.myForm.reset(rtx5090); */
@@ -45,8 +46,7 @@ export class BasicPageComponent implements OnInit{
 //metodo para simplicar la validacion si el campo es valido o no
   
   isValidField(field: string):boolean |null{ 
-    return this.myForm.controls[field].errors
-      && this.myForm.controls[field].touched;
+    return this.validatorsSevice.isValidField(this.myForm,field)
   }
   
   getFieldError(field: string): string | null {
